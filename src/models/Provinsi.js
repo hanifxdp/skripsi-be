@@ -1,23 +1,23 @@
-const { Sequelize } = require("sequelize");
-const { sequelize } = require("../config/databaseConfig");
+function init() {
+  const { Sequelize, DataTypes } = require("sequelize");
+  const { sequelize, ConnectDB } = require("../utils/database");
 
-const { DataTypes } = Sequelize;
+  const Provinsi = sequelize.define("provinsi", {
+    id_provinsi: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    nama_provinsi: {
+      type: DataTypes.STRING,
+    },
+    latitude: {
+      type: DataTypes.INTEGER,
+    },
+    longtitude: {
+      type: DataTypes.INTEGER,
+    },
+  });
 
-const Provinsi = sequelize.define("provinsi", {
-  id_provinsi: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  nama_provinsi: {
-    type: DataTypes.STRING,
-  },
-  latitude: {
-    type: DataTypes.INTEGER,
-  },
-  longtitude: {
-    type: DataTypes.INTEGER,
-  },
-});
-
-module.exports = Provinsi;
+  module.exports = Provinsi;
+}

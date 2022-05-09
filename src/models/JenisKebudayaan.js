@@ -1,17 +1,19 @@
-const { Sequelize } = require("sequelize");
-const { properties } = require("../config/databaseConfig");
+function init() {
+  const { Sequelize } = require("sequelize");
+  const { sequelize, ConnectDB } = require("../utils/database");
 
-const { DataTypes } = Sequelize;
+  const { DataTypes } = Sequelize;
 
-const JenisKebudayaan = properties.define("JenisKebudayaan", {
-  id_jenisBudaya: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  nama_jenis: {
-    type: DataTypes.STRING,
-  },
-});
+  const JenisKebudayaan = sequelize.define("JenisKebudayaan", {
+    id_jenisBudaya: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    nama_jenis: {
+      type: DataTypes.STRING,
+    },
+  });
 
-module.export = JenisKebudayaan;
+  module.export = JenisKebudayaan;
+}

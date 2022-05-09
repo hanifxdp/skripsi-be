@@ -8,18 +8,17 @@ module.exports = {
     dialect: process.env.DB_DIALECT,
   },
   test: {
-    username: 'root',
+    username: "root",
     password: null,
-    database: 'database_test',
-    host: '127.0.0.1',
-    dialect: 'mysql',
+    database: "database_test",
+    host: "127.0.0.1",
+    dialect: "postgres",
   },
   production: {
-    username: 'root',
+    username: "root",
     password: null,
-    database: 'database_production',
-    host: '127.0.0.1',
-    dialect: 'mysql',
+    database: "database",
+    host: "127.0.0.1",
+    dialect: "postgres",
   },
-}
-
+};

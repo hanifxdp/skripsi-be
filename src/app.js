@@ -2,10 +2,11 @@ require("dotenv").config();
 const express = require("express");
 const budayaRoutes = require("./routes/routes");
 const app = express();
-const { connectDB } = require("./utils/database");
-const Sequelize = require("sequelize");
+const { sequelize, connectDB } = require("./utils/database");
 
 const port = process.env.PORT || 8000;
+
+const routes = require("./routes/routes");
 
 app.use(express.json());
 
@@ -20,9 +21,5 @@ app.get("/", (request, response) => {
 });
 
 app.use("/api/v1/budaya", budayaRoutes);
-
-app.listen(port, () => {
-  console.log(`App running on port ${port}.`);
-});
 
 app.use(express.urlencoded({ extended: true }));
