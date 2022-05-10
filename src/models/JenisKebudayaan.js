@@ -1,4 +1,4 @@
-function init() {
+
   const { Sequelize } = require("sequelize");
   const { sequelize, ConnectDB } = require("../utils/database");
 
@@ -15,5 +15,4 @@ function init() {
     },
   });
 
-  module.export = JenisKebudayaan;
-}
+  module.exports = JenisKebudayaan;

@@ -1,31 +1,31 @@
-function init() {
+
   const { Sequelize } = require("sequelize");
   const { sequelize, ConnectDB } = require("../utils/database");
 
-  const { DataType } = Sequelize;
+  const { DataTypes } = Sequelize;
 
   const Admin = sequelize.define("admin", {
     id_admin: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
     nama_admin: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
     },
     username: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     password: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     email: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
   });
 
   module.exports = Admin;
-}
+

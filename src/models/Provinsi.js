@@ -1,4 +1,4 @@
-function init() {
+
   const { Sequelize, DataTypes } = require("sequelize");
   const { sequelize, ConnectDB } = require("../utils/database");
 
@@ -20,4 +20,4 @@ function init() {
   });
 
   module.exports = Provinsi;
-}
+

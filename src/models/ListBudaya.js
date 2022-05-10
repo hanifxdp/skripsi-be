@@ -1,4 +1,4 @@
-function init() {
+
   const { Sequelize } = require("sequelize");
   const { sequelize, ConnectDB } = require("../utils/database");
   const Provinsi = require("./Provinsi");
@@ -17,7 +17,7 @@ function init() {
       allowNull: false,
     },
     image: {
-      type: DataTypes.BLOB,
+      type: DataTypes.STRING,
     },
     pencatatan_num: {
       type: DataTypes.INTEGER,
@@ -32,23 +32,23 @@ function init() {
       type: DataTypes.TEXT,
     },
     video: {
-      type: DataTypes.BYTEA,
-    },
-    id_provisi: {
       type: DataTypes.STRING,
+    },
+    id_provinsi: {
+      type: DataTypes.INTEGER,
       references: {
         model: Provinsi,
-        key: "id",
+        key: "id_provinsi",
       },
     },
-    id_jenisbudaya: {
-      type: DataTypes.STRING,
+    id_jenisBudaya: {
+      type: DataTypes.INTEGER,
       references: {
         model: JenisKebudayaan,
-        key: "id",
+        key: "id_jenisBudaya",
       },
     },
   });
 
   module.exports = ListBudaya;
-}
+
