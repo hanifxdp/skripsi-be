@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const { getAdmin } = require("../controllers/Admin.js");
+const { createProvinsi, getProvinsi } = require("../controllers/Provinsi.js");
 const {
   getBudaya,
   createBudaya,
@@ -11,9 +12,12 @@ const router = Router();
 
 router
   .get("/budaya", getBudaya)
-  .get("/admin", getAdmin)
-  .post("/budaya", createBudaya)
+  .post("/budaya/add", createBudaya)
   .put("/budaya/:id", updateBudaya)
-  .delete("/budaya/:id", deleteBudaya);
+  .delete("/budaya/:id", deleteBudaya)
 
+  .post("/provinsi/add", createProvinsi)
+  .get("/provinsi/", getProvinsi)
+
+  .get("/admin", getAdmin);
 module.exports = router;

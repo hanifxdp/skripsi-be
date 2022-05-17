@@ -1,8 +1,9 @@
+const { Sequelize, DataTypes } = require("sequelize");
+const { sequelize, ConnectDB } = require("../utils/database");
 
-  const { Sequelize, DataTypes } = require("sequelize");
-  const { sequelize, ConnectDB } = require("../utils/database");
-
-  const Provinsi = sequelize.define("provinsi", {
+const Provinsi = sequelize.define(
+  "provinsi",
+  {
     id_provinsi: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -12,12 +13,13 @@
       type: DataTypes.STRING,
     },
     latitude: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
     },
-    longtitude: {
-      type: DataTypes.INTEGER,
+    longitude: {
+      type: DataTypes.DECIMAL,
     },
-  });
+  },
+  { timestamps: false }
+);
 
-  module.exports = Provinsi;
-
+module.exports = Provinsi;

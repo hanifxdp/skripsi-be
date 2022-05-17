@@ -20,6 +20,6 @@ app.get("/", (request, response) => {
   response.json({ info: "Node.js, Express, and Postgres API" });
 });
 
-app.use("/api/v1/budaya", budayaRoutes);
+app.use("/api/v1", budayaRoutes);
 
 app.use(express.urlencoded({ extended: true }));

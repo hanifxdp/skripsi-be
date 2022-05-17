@@ -1,10 +1,11 @@
+const { Sequelize } = require("sequelize");
+const { sequelize, ConnectDB } = require("../utils/database");
 
-  const { Sequelize } = require("sequelize");
-  const { sequelize, ConnectDB } = require("../utils/database");
+const { DataTypes } = Sequelize;
 
-  const { DataTypes } = Sequelize;
-
-  const Admin = sequelize.define("admin", {
+const Admin = sequelize.define(
+  "admin",
+  {
     id_admin: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -25,7 +26,8 @@
       type: DataTypes.STRING,
       allowNull: false,
     },
-  });
+  },
+  { timestamps: false }
+);
 
-  module.exports = Admin;
-
+module.exports = Admin;
