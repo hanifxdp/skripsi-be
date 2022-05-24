@@ -1,14 +1,28 @@
-const Router = require("express");
-const { connectDB } = require("../utils/database");
+const { Router } = require("express");
+const passport = require("../utils/passport");
+const response = require("../utils/response");
+const Admin = require("../models/Admin");
+
 const router = Router();
 
-router.post('/login', (req,res) =>{
+router.post(
+  "/login",
+  passport.authenticate("local", { failureMessage: true }),
+  (req, res) => {
+    const data = {
+      id: req.user.id_admin,
+      username: req.user.username,
+      name: req.user.nama_admin,
+    };
 
-    const username = req.body.username
-    const password = req.body.password
-    
-    connectDB.getConnection (async (err, connection) => {
+    return response.success(res, data, "Log In success");
+  }
+);
 
-    })
-} 
-)
+router.post("/logout", (req, res) => {
+  req.logout();
+
+  return response.success(res, undefined, "Log out success!");
+});
+
+module.exports = router;

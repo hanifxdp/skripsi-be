@@ -1,5 +1,6 @@
 const { Router } = require("express");
-const { getAdmin } = require("../controllers/Admin.js");
+const authRoutes = require("./authRoutes");
+const { getAdmin, createAdmin } = require("../controllers/Admin.js");
 const { createProvinsi, getProvinsi } = require("../controllers/Provinsi.js");
 const {
   getBudaya,
@@ -19,5 +20,10 @@ router
   .post("/provinsi/add", createProvinsi)
   .get("/provinsi/", getProvinsi)
 
-  .get("/admin", getAdmin);
+  .get("/admin", getAdmin)
+  .post("/admin/create", createAdmin)
+
+  .post("/login", authRoutes)
+  .post("/logout", authRoutes);
+
 module.exports = router;
