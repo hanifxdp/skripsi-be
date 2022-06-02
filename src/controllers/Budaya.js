@@ -1,10 +1,16 @@
-const Budaya = require("../models/ListBudaya");
+const Budaya = require("../models/listBudaya");
+const getCursorData = require("../helpers/getCursorData");
 
 // get budaya
-exports.getBudaya = async (req, res) => {
+exports.getBudayaAll = async (req, res) => {
   try {
     const budaya = await Budaya.findAll();
-    res.send(budaya);
+    const cursor = await getCursorData(Budaya, req.query);
+    const data = {
+      edge: budaya,
+      cursor,
+    };
+    res.send(data);
   } catch (err) {
     console.log(err);
   }
@@ -25,7 +31,7 @@ exports.updateBudaya = async (req, res) => {
   try {
     await Budaya.update(req.body, {
       where: {
-        id_budaya: req.params.id,
+        id: req.params.id,
       },
     });
     res.json({
@@ -39,7 +45,7 @@ exports.deleteBudaya = async (req, res) => {
   try {
     await Budaya.destroy({
       where: {
-        id_budaya: req.params.id,
+        id: req.params.id,
       },
     });
     res.json({

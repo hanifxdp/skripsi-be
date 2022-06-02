@@ -1,32 +1,24 @@
 const { Sequelize } = require("sequelize");
 const { sequelize, ConnectDB } = require("../utils/database");
-const Provinsi = require("./Provinsi");
-const JenisKebudayaan = require("./JenisKebudayaan");
+const Provinsi = require("./provinsi");
+const JenisKebudayaan = require("./jenisKebudayaan");
 
 const { DataTypes } = Sequelize;
 
 const ListBudaya = sequelize.define(
   "listbudaya",
   {
-    id_budaya: {
-      type: DataTypes.INTEGER,
-      autoIncrementL: true,
-      primaryKey: true,
-    },
     nama_budaya: {
       type: DataTypes.STRING,
     },
     image: {
       type: DataTypes.STRING,
     },
-    pencatatan_num: {
-      type: DataTypes.INTEGER,
-    },
-    penetapan_num: {
+    registNum: {
       type: DataTypes.INTEGER,
     },
     tahun: {
-      type: DataTypes.DATE,
+      type: DataTypes.INTEGER,
     },
     deskripsi: {
       type: DataTypes.TEXT,
@@ -34,18 +26,18 @@ const ListBudaya = sequelize.define(
     video: {
       type: DataTypes.STRING,
     },
-    id_provinsi: {
-      type: DataTypes.INTEGER,
+    provinsiId: {
+      type: Sequelize.INTEGER,
       references: {
         model: Provinsi,
-        key: "id_provinsi",
+        key: "id",
       },
     },
-    id_jenisBudaya: {
-      type: DataTypes.INTEGER,
+    jenisId: {
+      type: Sequelize.INTEGER,
       references: {
         model: JenisKebudayaan,
-        key: "id_jenisBudaya",
+        key: "id",
       },
     },
   },

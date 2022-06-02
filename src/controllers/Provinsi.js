@@ -1,15 +1,4 @@
-const Provinsi = require("../models/Provinsi");
-
-exports.createProvinsi = async (req, res) => {
-  try {
-    await Provinsi.create(req.body);
-    res.json({
-      message: "Provinsi Berhasil Ditambahkan",
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};
+const Provinsi = require("../models/provinsi");
 
 exports.getProvinsi = async (req, res) => {
   try {

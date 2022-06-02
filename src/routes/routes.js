@@ -1,9 +1,9 @@
 const { Router } = require("express");
 const authRoutes = require("./authRoutes");
 const { getAdmin, createAdmin } = require("../controllers/Admin.js");
-const { createProvinsi, getProvinsi } = require("../controllers/Provinsi.js");
+const { getProvinsi } = require("../controllers/Provinsi.js");
 const {
-  getBudaya,
+  getBudayaAll,
   createBudaya,
   updateBudaya,
   deleteBudaya,
@@ -12,12 +12,11 @@ const {
 const router = Router();
 
 router
-  .get("/budaya", getBudaya)
+  .get("/budaya", getBudayaAll)
   .post("/budaya/add", createBudaya)
-  .put("/budaya/:id", updateBudaya)
+  .patch("/budaya/:id", updateBudaya)
   .delete("/budaya/:id", deleteBudaya)
 
-  .post("/provinsi/add", createProvinsi)
   .get("/provinsi/", getProvinsi)
 
   .get("/admin", getAdmin)
