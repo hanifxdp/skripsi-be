@@ -1,17 +1,12 @@
-module.exports = async (model, query, options = {}) => {
-  let totalRows = 0;
-  if (Object.keys(options).length > 0) {
-    totalRows = await model.count(options);
-    totalRows = totalRows.length;
-  } else {
-    totalRows = await model.count();
-  }
+module.exports = async (model, query) => {
+  const totalRows = await model.count();
+  const size = parseInt(totalRows);
 
   if (!query.limit) {
     return {
       hasNext: false,
       hasPrev: false,
-      size: totalRows,
+      size: size,
       totalPages: 1,
       totalRows,
     };
@@ -24,7 +19,7 @@ module.exports = async (model, query, options = {}) => {
   return {
     hasNext,
     hasPrev,
-    size: parseInt(query.limit, 10),
+    size: query.limit,
     totalPages,
     totalRows,
   };

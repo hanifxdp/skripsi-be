@@ -7,12 +7,18 @@ const {
   createBudaya,
   updateBudaya,
   deleteBudaya,
+  getBudayaById,
+  getListBudaya,
+  getBudayaDetail,
 } = require("../controllers/Budaya.js");
 
 const router = Router();
 
 router
   .get("/budaya", getBudayaAll)
+  .get("/budaya/:id", getBudayaById)
+  .get("/budaya/list/:id", getListBudaya)
+  .get("/budaya/detail/:id", getBudayaDetail)
   .post("/budaya/add", createBudaya)
   .patch("/budaya/:id", updateBudaya)
   .delete("/budaya/:id", deleteBudaya)

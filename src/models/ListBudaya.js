@@ -44,4 +44,15 @@ const ListBudaya = sequelize.define(
   { timestamps: false }
 );
 
+ListBudaya.associate = function (models) {
+  ListBudaya.belongsTo(models.JenisKebudayaan, {
+    foreignKey: "id",
+    as: "jenisId",
+  });
+  ListBudaya.belongsTo(models.Provinsi, {
+    foreignKey: "id",
+    as: "provinsiId",
+  });
+};
+
 module.exports = ListBudaya;

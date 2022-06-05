@@ -12,5 +12,8 @@ const JenisKebudayaan = sequelize.define(
   },
   { timestamps: false }
 );
+JenisKebudayaan.associate = function (models) {
+  JenisKebudayaan.hasMany(models.ListBudaya);
+};
 
 module.exports = JenisKebudayaan;

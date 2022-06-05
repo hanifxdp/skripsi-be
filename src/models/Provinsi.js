@@ -16,5 +16,8 @@ const Provinsi = sequelize.define(
   },
   { timestamps: false }
 );
+Provinsi.associate = function (models) {
+  Provinsi.hasMany(models.ListBudaya);
+};
 
 module.exports = Provinsi;

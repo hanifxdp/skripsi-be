@@ -12,11 +12,6 @@ const { DataTypes } = Sequelize;
 const Admin = sequelize.define(
   "admin",
   {
-    id_admin: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
     nama_admin: {
       type: DataTypes.STRING,
     },
