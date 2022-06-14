@@ -13,10 +13,6 @@ const sequelize = new Sequelize(DB.name, DB.username, DB.password, {
 const connectDB = async () => {
   try {
     // await sequelize.sync({ force: true });
-    // await Admin.sync();
-    // await Provinsi.sync();
-    // await JenisKebudayaan.sync();
-    // await ListBudaya.sync();
 
     await sequelize.sync();
     console.log("All models were synchronized successfully.");
