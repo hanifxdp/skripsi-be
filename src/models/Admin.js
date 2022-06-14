@@ -28,14 +28,24 @@ const Admin = sequelize.define(
       allowNull: false,
     },
   },
-  { timestamps: false }
+  {
+    timestamps: false,
+    defaultScope: {
+      attributes: { exclude: ["password"] },
+    },
+    scopes: {
+      withPassword: {
+        attributes: {},
+      },
+    },
+  }
 );
 
-Admin.addScope("withPassword", {
-  withPassword: {
-    attributes: { exclude: ["password"] },
-  },
-});
+// Admin.addScope("withPassword", {
+//   withPassword: {
+//     attributes: { include: ["password"] },
+//   },
+// });
 Admin.beforeCreate(async (admin) => {
   const hashedPassword = await hashPassword(admin.password);
   admin.password = hashedPassword;

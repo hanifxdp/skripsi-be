@@ -2,13 +2,22 @@ const Budaya = require("../models/listBudaya");
 const Provinsi = require("../models/provinsi");
 const getCursorData = require("../helpers/getCursorData");
 const parseSequelizeOptions = require("../helpers/parseSequelizeOptions");
-const JenisKebudayaan = require("../models/jenisKebudayaan");
+const jenisKebudayaan = require("../models/jenisKebudayaan");
 
-// get budaya
+// get budaya be
 exports.getBudayaAll = async (req, res) => {
   try {
     const options = parseSequelizeOptions(req.query);
-
+    options.include = [
+      {
+        model: jenisKebudayaan,
+        attributes: ["nama_jenis"],
+      },
+      {
+        model: Provinsi,
+        attributes: ["nama_provinsi"],
+      },
+    ];
     const budaya = await Budaya.findAll(options);
 
     const cursor = await getCursorData(Budaya, req.query);
@@ -22,11 +31,60 @@ exports.getBudayaAll = async (req, res) => {
     console.log(err);
   }
 };
+// get budaya fe
+exports.getAll = async function (req, res) {
+  try {
+    const allData = await Budaya.findAll({
+      include: [
+        {
+          model: jenisKebudayaan,
+          attributes: ["nama_jenis"],
+        },
+        {
+          model: Provinsi,
+          attributes: ["nama_provinsi"],
+        },
+      ],
+      order: [["id", "ASC"]],
+    });
+    return res.status(200).json({
+      sucess: true,
+      data: allData,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      sucess: false,
+      error: error,
+      message: error.message,
+    });
+  }
+};
+
 //get budaya by id
 exports.getBudayaById = async (req, res) => {
   try {
     const { id } = req.params;
-    const budaya = await Budaya.findByPk(id);
+    const budaya = await Budaya.findByPk(req.params.id, {
+      attributes: [
+        "id",
+        "nama_budaya",
+        "image",
+        "registNum",
+        "tahun",
+        "deskripsi",
+        "video",
+      ],
+      include: [
+        {
+          model: Provinsi,
+          attributes: ["nama_provinsi"],
+        },
+        {
+          model: jenisKebudayaan,
+          attributes: ["nama_jenis"],
+        },
+      ],
+    });
     res.send(budaya);
   } catch (err) {
     console.log(err);
@@ -72,12 +130,12 @@ module.exports.getBudayaDetail = async function (req, res) {
       ],
       include: [
         {
-          model: JenisKebudayaan,
-          attributes: ["nama_jenis"],
-        },
-        {
           model: Provinsi,
           attributes: ["nama_provinsi"],
+        },
+        {
+          model: jenisKebudayaan,
+          attributes: ["nama_jenis"],
         },
       ],
     });

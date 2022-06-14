@@ -4,14 +4,11 @@ const getCursorData = require("../helpers/getCursorData");
 const parseSequelizeOptions = require("../helpers/parseSequelizeOptions");
 
 exports.create = async (admin) => {
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(admin.password, salt);
-
   let createdAdmin = await Admin.create({
-    id_admin: admin.id_admin,
+    id: admin.id,
     nama_admin: admin.nama_admin,
     username: admin.username,
-    password: hashedPassword,
+    password: admin.password  ,
     email: admin.email,
   });
 

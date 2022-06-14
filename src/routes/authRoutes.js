@@ -10,7 +10,7 @@ router.post(
   passport.authenticate("local", { failureMessage: true }),
   (req, res) => {
     const data = {
-      id: req.user.id_admin,
+      id: req.user.id,
       username: req.user.username,
       name: req.user.nama_admin,
     };

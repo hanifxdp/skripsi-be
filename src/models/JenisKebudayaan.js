@@ -3,8 +3,8 @@ const { sequelize, ConnectDB } = require("../utils/database");
 
 const { DataTypes } = Sequelize;
 
-const JenisKebudayaan = sequelize.define(
-  "JenisKebudayaan",
+const jenisKebudayaan = sequelize.define(
+  "jenisKebudayaan",
   {
     nama_jenis: {
       type: DataTypes.STRING,
@@ -12,8 +12,9 @@ const JenisKebudayaan = sequelize.define(
   },
   { timestamps: false }
 );
-JenisKebudayaan.associate = function (models) {
-  JenisKebudayaan.hasMany(models.ListBudaya);
+
+jenisKebudayaan.associate = function (models) {
+  jenisKebudayaan.hasMany(models.ListBudaya, { constraint: true });
 };
 
-module.exports = JenisKebudayaan;
+module.exports = jenisKebudayaan;

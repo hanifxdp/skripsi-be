@@ -1,7 +1,7 @@
 const { Sequelize } = require("sequelize");
 const { sequelize, ConnectDB } = require("../utils/database");
 const Provinsi = require("./provinsi");
-const JenisKebudayaan = require("./jenisKebudayaan");
+const jenisKebudayaan = require("./jenisKebudayaan");
 
 const { DataTypes } = Sequelize;
 
@@ -33,10 +33,10 @@ const ListBudaya = sequelize.define(
         key: "id",
       },
     },
-    jenisId: {
+    jenisKebudayaanId: {
       type: Sequelize.INTEGER,
       references: {
-        model: JenisKebudayaan,
+        model: jenisKebudayaan,
         key: "id",
       },
     },
@@ -44,15 +44,7 @@ const ListBudaya = sequelize.define(
   { timestamps: false }
 );
 
-ListBudaya.associate = function (models) {
-  ListBudaya.belongsTo(models.JenisKebudayaan, {
-    foreignKey: "id",
-    as: "jenisId",
-  });
-  ListBudaya.belongsTo(models.Provinsi, {
-    foreignKey: "id",
-    as: "provinsiId",
-  });
-};
+ListBudaya.belongsTo(Provinsi);
+ListBudaya.belongsTo(jenisKebudayaan);
 
 module.exports = ListBudaya;
