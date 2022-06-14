@@ -1,5 +1,5 @@
-const Provinsi = require("../models/provinsi");
-const Budaya = require("../models/listBudaya");
+const Provinsi = require("../models/Provinsi");
+const Budaya = require("../models/ListBudaya");
 const sequelize = require("sequelize");
 
 exports.getProvinsi = async (req, res) => {

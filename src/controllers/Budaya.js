@@ -1,5 +1,5 @@
-const Budaya = require("../models/listBudaya");
-const Provinsi = require("../models/provinsi");
+const Budaya = require("../models/ListBudaya");
+const Provinsi = require("../models/Provinsi");
 const getCursorData = require("../helpers/getCursorData");
 const parseSequelizeOptions = require("../helpers/parseSequelizeOptions");
 const jenisKebudayaan = require("../models/jenisKebudayaan");

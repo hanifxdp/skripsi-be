@@ -1,6 +1,6 @@
 const math = require("mathjs");
-const Budaya = require("../models/listBudaya");
-const Provinsi = require("../models/provinsi");
+const Budaya = require("../models/ListBudaya");
+const Provinsi = require("../models/Provinsi");
 const sequelize = require("sequelize");
 const { countBudaya } = require("./Provinsi");
 

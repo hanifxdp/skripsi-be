@@ -1,7 +1,7 @@
 const { Sequelize } = require("sequelize");
 const { sequelize, ConnectDB } = require("../utils/database");
-const Provinsi = require("./provinsi");
-const jenisKebudayaan = require("./jenisKebudayaan");
+const Provinsi = require("./Provinsi");
+const jenisKebudayaan = require("./JenisKebudayaan");
 
 const { DataTypes } = Sequelize;
 
