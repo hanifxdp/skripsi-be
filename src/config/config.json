@@ -16,12 +16,13 @@
       "dialect": "postgres"
     },
     "production": {
-      "username": "frnnylorxxpwgz",
-      "password":
-        "c3952c0d04c02bf743e4123c80b2090bb0591cd6b2e2eae0b6d898e68329987e",
-      "database": "d18onl6tmrk39u",
-      "host": "ec2-52-22-136-117.compute-1.amazonaws.com",
+      "use_env_variable": "DATABASE_URL",
       "dialect": "postgres",
-      "port": "5432"
+      "dialectOptions": {
+        "ssl": {
+          "require": true,
+          "rejectUnauthorized": false
+        }
+      }
     }
 }
