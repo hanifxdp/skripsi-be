@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const Admin = require("../models/admin");
+const Admin = require("../models/Admin");
 const getCursorData = require("../helpers/getCursorData");
 const parseSequelizeOptions = require("../helpers/parseSequelizeOptions");
 
@@ -8,7 +8,7 @@ exports.create = async (admin) => {
     id: admin.id,
     nama_admin: admin.nama_admin,
     username: admin.username,
-    password: admin.password  ,
+    password: admin.password,
     email: admin.email,
   });
 
