@@ -16,7 +16,7 @@ module.exports = {
     dialect: "postgres",
   },
   production: {
-    user: "oubyotqrxbvonk",
+    username: "oubyotqrxbvonk",
     password:
       "c1ef41851f5b1469792825d49eed08d5bc1705a00421dde676095eb2e6babeab",
     database: "d6uims88ph6d2",
