@@ -1,12 +1,12 @@
 {
     "development": {
-      "name": "process.env.DB_NAME",
-      "username": "process.env.DB_USERNAME",
-      "password": "process.env.DB_PASSWORD",
-      "database": "process.env.DB_NAME",
-      "host": "process.env.DB_HOST",
-      "dialect": "process.env.DB_DIALECT",
-      "port": "process.env.DB_PORT"
+      "name": "budaya",
+      "username": "postgres",
+      "password": "",
+      "database": "budaya",
+      "host": "postgres",
+      "dialect": "postgres",
+      "port": "5432"
     },
     "test": {
       "username": "root",
