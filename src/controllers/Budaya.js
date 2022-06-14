@@ -2,7 +2,7 @@ const Budaya = require("../models/ListBudaya");
 const Provinsi = require("../models/Provinsi");
 const getCursorData = require("../helpers/getCursorData");
 const parseSequelizeOptions = require("../helpers/parseSequelizeOptions");
-const jenisKebudayaan = require("../models/jenisKebudayaan");
+const jenisKebudayaan = require("../models/JenisKebudayaan");
 
 // get budaya be
 exports.getBudayaAll = async (req, res) => {
