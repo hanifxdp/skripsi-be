@@ -3,6 +3,7 @@ const Provinsi = require("../models/Provinsi");
 const getCursorData = require("../helpers/getCursorData");
 const parseSequelizeOptions = require("../helpers/parseSequelizeOptions");
 const jenisKebudayaan = require("../models/JenisKebudayaan");
+const cloudinary = require("../services/cloudinary");
 
 // get budaya be
 exports.getBudayaAll = async (req, res) => {
@@ -161,9 +162,13 @@ module.exports.getBudayaDetail = async function (req, res) {
 // add budaya
 exports.createBudaya = async (req, res) => {
   try {
-    await Budaya.create(req.body);
+    const budaya = req.body;
+    if (req.file) budaya.image = req.file.path;
+
+    const data = await Budaya.create(budaya);
     res.json({
       message: "Budaya Berhasil Ditambahkan",
+      data,
     });
   } catch (err) {
     console.log(err);

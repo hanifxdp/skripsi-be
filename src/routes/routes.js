@@ -15,6 +15,12 @@ const {
 const { getCalculation } = require("../controllers/calc");
 const checkLogin = require("../middleware/checkLogin");
 
+const multer = require("multer");
+const { getStorage } = require("../services/cloudinary");
+const storage = getStorage("budaya");
+
+const upload = multer({ storage });
+
 const router = Router();
 
 router
@@ -23,8 +29,8 @@ router
   .get("/budaya/:id", getBudayaById)
   .get("/budaya/list/:id", getListBudaya)
   .get("/budaya/detail/:id", getBudayaDetail)
-  .post("/budaya/add", checkLogin, createBudaya)
-  .patch("/budaya/:id", checkLogin, updateBudaya)
+  .post("/budaya/add", checkLogin, upload.single("image"), createBudaya)
+  .patch("/budaya/:id", checkLogin, upload.single("image"), updateBudaya)
   .delete("/budaya/:id", checkLogin, deleteBudaya)
 
   .get("/provinsi/", getProvinsi)
