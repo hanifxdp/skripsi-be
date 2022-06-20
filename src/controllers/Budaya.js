@@ -4,6 +4,8 @@ const getCursorData = require("../helpers/getCursorData");
 const parseSequelizeOptions = require("../helpers/parseSequelizeOptions");
 const jenisKebudayaan = require("../models/JenisKebudayaan");
 const cloudinary = require("../services/cloudinary");
+const budayaServices = require("../services/budayaServices");
+const response = require("../utils/response");
 
 // get budaya be
 exports.getBudayaAll = async (req, res) => {
@@ -163,9 +165,14 @@ module.exports.getBudayaDetail = async function (req, res) {
 exports.createBudaya = async (req, res) => {
   try {
     const budaya = req.body;
-    if (req.file) budaya.image = req.file.path;
+    if (req.file) {
+      budaya.image = req.file.path;
+    }
 
-    const data = await Budaya.create(budaya);
+    console.log(budaya);
+
+    const data = await budayaServices.create(budaya);
+
     res.json({
       message: "Budaya Berhasil Ditambahkan",
       data,
@@ -191,11 +198,12 @@ exports.updateBudaya = async (req, res) => {
 };
 exports.deleteBudaya = async (req, res) => {
   try {
-    await Budaya.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
+    const { id } = req.params;
+    const data = await budayaServices.deleteById(id);
+
+    if (!data)
+      return response.not_found(res, undefined, "Budaya tidak ditemukan!");
+
     res.json({
       message: "Budaya Berhasil Dihapus",
     });

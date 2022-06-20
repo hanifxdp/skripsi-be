@@ -14,9 +14,9 @@ const {
 } = require("../controllers/Budaya.js");
 const { getCalculation } = require("../controllers/calc");
 const checkLogin = require("../middleware/checkLogin");
-
 const multer = require("multer");
 const { getStorage } = require("../services/cloudinary");
+
 const storage = getStorage("budaya");
 
 const upload = multer({ storage });
