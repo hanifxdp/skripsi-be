@@ -28,7 +28,6 @@ const routes = require("./routes/routes");
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(express.multipart());
 app.use(session(sessionConfig(sessionStore)));
 app.use(passport.initialize());
 app.use(passport.session());
