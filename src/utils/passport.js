@@ -6,19 +6,19 @@ const Admin = require("../models/Admin");
 passport.use(
   new LocalStrategy(async (username, password, cb) => {
     try {
-      const admin = await Admin.scope("withPassword").findOne({
+      const user = await Admin.scope("withPassword").findOne({
         where: { username },
       });
 
-      if (!admin) return cb(null, false);
+      if (!user) return cb(null, false);
 
-      const passwordMatch = await bcrypt.compare(password, admin.password);
+      const passwordMatch = await bcrypt.compare(password, user.password);
       // console.log(passwordMatch);
       if (!passwordMatch) {
         return cb(null, false);
       }
 
-      return cb(null, admin);
+      return cb(null, user);
     } catch (err) {
       return cb(err);
     }
