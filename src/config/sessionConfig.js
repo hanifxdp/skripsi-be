@@ -1,21 +1,21 @@
-const randomString = require('randomstring')
+const randomString = require("randomstring");
 
 const sessionConfig = (sessionStore) => {
   return {
     store: sessionStore,
-    name: 'SID',
+    name: "SID",
     secret: randomString.generate({
       length: 14,
-      charset: 'alphanumeric',
+      charset: "alphanumeric",
     }),
     resave: false,
     saveUninitialized: true,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 7,
-      sameSite: true,
+      sameSite: false,
       secure: false,
     },
-  }
-}
+  };
+};
 
-module.exports = sessionConfig
+module.exports = sessionConfig;

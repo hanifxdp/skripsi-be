@@ -20,6 +20,7 @@ const origin_allowed = [
   "http://localhost:3000/",
   "http://localhost:3000",
   "https://kerajinantradisional.vercel.app",
+  "https://kerajinantradisional.vercel.app/",
   "https://kerajinantradisional-hanifxdp.vercel.app/",
   "https://kerajinantradisional-git-master-hanifxdp.vercel.app/",
 ];
@@ -27,8 +28,8 @@ const origin_allowed = [
 const corsOptions = {
   origin: origin_allowed,
   credentials: true,
-  optionSuccessStatus: 200,
   // allowedHeaders: ["Content-Type", "Authorization", "Set-Cookie"],
+  optionSuccessStatus: 200,
 };
 
 const routes = require("./routes/routes");
