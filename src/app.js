@@ -16,11 +16,19 @@ const sessionStore = new SequelizeStore({
   db: sequelize,
 });
 
+const origin_allowed = [
+  "http://localhost:3000/",
+  "http://localhost:3000",
+  "https://kerajinantradisional.vercel.app",
+  "https://kerajinantradisional-hanifxdp.vercel.app/",
+  "https://kerajinantradisional-git-master-hanifxdp.vercel.app/",
+];
+
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN,
+  origin: origin_allowed,
   credentials: true,
   optionSuccessStatus: 200,
-  allowedHeaders: ["Content-Type", "Authorization", "Set-Cookie"],
+  // allowedHeaders: ["Content-Type", "Authorization", "Set-Cookie"],
 };
 
 const routes = require("./routes/routes");
