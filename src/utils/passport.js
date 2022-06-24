@@ -25,12 +25,10 @@ passport.use(
   })
 );
 
-passport.serializeUser((user, cb) => cb(null, user.id));
+passport.serializeUser((user, done) => done(null, user));
 
-passport.deserializeUser((id, cb) => {
-  Admin.findByPk(id)
-    .then((user) => cb(null, user))
-    .catch((err) => cb(err));
+passport.deserializeUser((user, done) => {
+  done(null, user);
 });
 
 module.exports = passport;
