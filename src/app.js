@@ -5,6 +5,8 @@ const session = require("express-session");
 const cors = require("cors");
 const fs = require("fs");
 
+const routes = require("./routes/routes");
+
 const app = express();
 const passport = require("./utils/passport");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
@@ -16,27 +18,18 @@ const sessionStore = new SequelizeStore({
   db: sequelize,
 });
 
-const origin_allowed = [
-  "http://localhost:3000/",
-  "http://localhost:3000",
-  "https://kerajinantradisional.vercel.app",
-  "https://kerajinantradisional.vercel.app/",
-  "https://kerajinantradisional-hanifxdp.vercel.app/",
-  "https://kerajinantradisional-git-master-hanifxdp.vercel.app/",
-];
-
 const corsOptions = {
-  origin: origin_allowed,
+  origin: process.env.CORS_ORIGIN,
   credentials: true,
-  // allowedHeaders: ["Content-Type", "Authorization", "Set-Cookie"],
+  allowedHeaders: ["Content-Type", "Authorization", "Set-Cookie"],
   optionSuccessStatus: 200,
 };
 
-const routes = require("./routes/routes");
+sessionStore.sync();
 
 app.use(cors(corsOptions));
-app.use(express.json());
 app.use(express.urlencoded({ limit: "50mb", extended: false }));
+app.use(express.json());
 app.use(session(sessionConfig(sessionStore)));
 app.use(passport.initialize());
 app.use(passport.session());
