@@ -25,11 +25,11 @@ passport.use(
   })
 );
 
-passport.serializeUser((admin, cb) => (null, admin.id));
+passport.serializeUser((user, cb) => cb(null, user.id));
 
 passport.deserializeUser((id, cb) => {
   Admin.findByPk(id)
-    .then((admin) => cb(null, admin))
+    .then((user) => cb(null, user))
     .catch((err) => cb(err));
 });
 
