@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const passport = require("../utils/passport");
 const response = require("../utils/response");
-const Admin = require("../models/Admin");
 
 const router = Router();
 

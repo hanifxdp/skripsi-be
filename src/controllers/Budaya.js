@@ -21,7 +21,7 @@ exports.getBudayaAll = async (req, res) => {
         attributes: ["nama_provinsi"],
       },
     ];
-    // options.order = [["id", "ASC"]];
+    options.order = [["id", "ASC"]];
     const budaya = await Budaya.findAll(options);
 
     const cursor = await getCursorData(Budaya, req.query);

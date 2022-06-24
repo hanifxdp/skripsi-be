@@ -20,14 +20,14 @@ const corsOptions = {
   origin: process.env.CORS_ORIGIN,
   credentials: true,
   optionSuccessStatus: 200,
-  allowedHeaders: ["content-type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization", "Set-Cookie"],
 };
 
 const routes = require("./routes/routes");
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ limit: "50mb", extended: false }));
 app.use(session(sessionConfig(sessionStore)));
 app.use(passport.initialize());
 app.use(passport.session());
