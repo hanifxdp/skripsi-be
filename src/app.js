@@ -12,7 +12,6 @@ const sessionConfig = require("./config/sessionConfig");
 const { sequelize, connectDB } = require("./utils/database");
 const http = require("http");
 const enforce = require("express-sslify");
-
 const port = process.env.PORT || 8000;
 const sessionStore = new SequelizeStore({
   db: sequelize,
@@ -33,25 +32,24 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use(enforce.HTTPS(true));
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(session(sessionConfig(sessionStore)));
 app.use(passport.initialize());
 app.use(passport.session());
 
-connectDB().then(() => {
-  app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-  });
+const httpServer = http.createServer(app);
+
+connectDB().then(async () => {
+  await httpServer.listen(port);
+  console.log(`Server is running on port ${port}`);
 });
 
 app.get("/", (request, response) => {
   response.json({ info: "Node.js, Express, and Postgres API" });
 });
-
 app.use("/api/v1", budayaRoutes);
-
 app.use(express.urlencoded({ extended: true }));
 
 module.exports = app;
