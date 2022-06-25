@@ -21,7 +21,6 @@ module.exports.login = async function (req, res) {
         );
         res.cookie("jwt", token, {
           maxAge: 60 * 60 * 1000,
-          httpOnly: false,
           secure: true,
           sameSite: "none",
         });
