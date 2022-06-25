@@ -9,15 +9,12 @@ passport.use(
       const admin = await Admin.scope("withPassword").findOne({
         where: { username },
       });
-
       if (!admin) return cb(null, false);
-
       const passwordMatch = await bcrypt.compare(password, admin.password);
       // console.log(passwordMatch);
       if (!passwordMatch) {
         return cb(null, false);
       }
-
       return cb(null, admin);
     } catch (err) {
       return cb(err);
