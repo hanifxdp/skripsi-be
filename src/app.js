@@ -10,6 +10,8 @@ const passport = require("./utils/passport");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sessionConfig = require("./config/sessionConfig");
 const { sequelize, connectDB } = require("./utils/database");
+const http = require("http");
+const enforce = require("express-sslify");
 
 const port = process.env.PORT || 8000;
 const sessionStore = new SequelizeStore({
@@ -31,6 +33,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(enforce.HTTPS(true));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(session(sessionConfig(sessionStore)));
