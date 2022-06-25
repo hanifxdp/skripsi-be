@@ -9,9 +9,11 @@ const sessionConfig = (sessionStore) => {
       charset: "alphanumeric",
     }),
     resave: true,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 7,
+      sameSite: 'none',
+      secure,
     },
   };
 };
