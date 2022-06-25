@@ -6,28 +6,30 @@ const Admin = require("../models/Admin");
 passport.use(
   new LocalStrategy(async (username, password, cb) => {
     try {
-      const user = await Admin.scope("withPassword").findOne({
+      const admin = await Admin.scope("withPassword").findOne({
         where: { username },
       });
 
-      if (!user) return cb(null, false);
+      if (!admin) return cb(null, false);
 
-      const passwordMatch = await bcrypt.compare(password, user.password);
+      const passwordMatch = await bcrypt.compare(password, admin.password);
       // console.log(passwordMatch);
       if (!passwordMatch) {
         return cb(null, false);
       }
 
-      return cb(null, user);
+      return cb(null, admin);
     } catch (err) {
       return cb(err);
     }
   })
 );
 
-passport.serializeUser((user, done) => done(null, user.id));
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
 
-passport.deserializeUser((id, done) => {
+passport.deserializeUser(function (id, done) {
   Admin.findById(id, function (err, user) {
     done(err, user);
   });
