@@ -1,19 +1,12 @@
 const { Router } = require("express");
 const authRoutes = require("./authRoutes");
-const { getAdmin, createAdmin } = require("../controllers/Admin.js");
-const { getProvinsi, countBudaya } = require("../controllers/Provinsi.js");
-const {
-  getBudayaAll,
-  createBudaya,
-  updateBudaya,
-  deleteBudaya,
-  getBudayaById,
-  getListBudaya,
-  getBudayaDetail,
-  getAll,
-} = require("../controllers/Budaya.js");
-const { getCalculation } = require("../controllers/calc");
-const checkLogin = require("../middleware/checkLogin");
+const budayaController = require("../controllers/Budaya");
+const provinsiController = require("../controllers/Provinsi.js");
+const adminController = require("../controllers/Admin.js");
+const calc = require("../controllers/calc");
+
+const authController = require("../controllers/auth");
+const auth = require("../middleware/checkLogin");
 const multer = require("multer");
 const { getStorage } = require("../services/cloudinary");
 
@@ -24,24 +17,38 @@ const upload = multer({ storage });
 const router = Router();
 
 router
-  .get("/budaya", checkLogin, getBudayaAll)
-  .get("/budaya/all", getAll)
-  .get("/budaya/:id", getBudayaById)
-  .get("/budaya/list/:id", getListBudaya)
-  .get("/budaya/detail/:id", getBudayaDetail)
-  .post("/budaya/add", checkLogin, upload.single("image"), createBudaya)
-  .patch("/budaya/:id", checkLogin, upload.single("image"), updateBudaya)
-  .delete("/budaya/:id", checkLogin, deleteBudaya)
+  .post("/login", authController.login)
+  .post("/logout", authController.logout)
+  .post("/create-pass", authController.comparePass)
 
-  .get("/provinsi/", getProvinsi)
-  .get("/provinsi/hitung", countBudaya)
+  .get("/budaya", auth.checkLogin, budayaController.getBudayaAll)
+  .get("/budaya/all", budayaController.getAll)
+  .get("/budaya/:id", budayaController.getBudayaById)
+  .get("/budaya/list/:id", budayaController.getListBudaya)
+  .get("/budaya/detail/:id", budayaController.getBudayaDetail)
+  .post(
+    "/budaya/add",
+    auth.checkLogin,
+    upload.single("image"),
+    budayaController.createBudaya
+  )
+  .patch(
+    "/budaya/:id",
+    auth.checkLogin,
+    upload.single("image"),
+    budayaController.updateBudaya
+  )
+  .delete("/budaya/:id", auth.checkLogin, budayaController.deleteBudaya)
 
-  .get("/admin", getAdmin)
-  .post("/admin/create", createAdmin)
+  .get("/provinsi/", provinsiController.getProvinsi)
+  .get("/provinsi/hitung", provinsiController.countBudaya)
+
+  .get("/admin", adminController.getAdmin)
+  .post("/admin/create", adminController.createAdmin)
 
   .post("/login", authRoutes)
   .post("/logout", authRoutes)
 
-  .get("/calculation", getCalculation);
+  .get("/calculation", calc.getCalculation);
 
 module.exports = router;

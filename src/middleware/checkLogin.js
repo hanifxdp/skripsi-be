@@ -1,5 +1,10 @@
-module.exports = (req, res, next) => {
-  if (!req.user) return res.status(401).json({ message: "Not authenticated." });
-
-  return next();
+module.exports.checkLogin = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (!token) {
+    return res.status(401).json({
+      success: false,
+      message: "You aren't logged in",
+    });
+  }
+  next();
 };
