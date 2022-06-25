@@ -25,13 +25,13 @@ passport.use(
   })
 );
 
-passport.serializeUser(function (user, done) {
-  done(null, user.id);
+passport.serializeUser(function (admin, done) {
+  done(null, admin.id);
 });
 
 passport.deserializeUser(function (id, done) {
-  Admin.findById(id, function (err, user) {
-    done(err, user);
+  Admin.findById(id, function (err, admin) {
+    done(err, admin);
   });
 });
 
