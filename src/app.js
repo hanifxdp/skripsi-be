@@ -35,7 +35,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
+// app.use(enforce.HTTPS({ trustProtoHeader: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(session(sessionConfig(sessionStore)));
@@ -53,6 +53,8 @@ const httpServer = http.createServer(app);
 connectDB().then(async () => {
   await httpServer.listen(port);
   console.log(`Server is running on port ${port}`);
+  // app.listen(port, () => {
+  // });
 });
 
 module.exports = app;
