@@ -19,7 +19,14 @@ const sessionStore = new SequelizeStore({
 const corsOptions = {
   origin: process.env.CORS_ORIGIN,
   credentials: true,
-  // allowedHeaders: ["Content-Type", "Authorization", "Set-Cookie"],
+  methods: ["GET", "POST", "PATCH", "DELETE"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "Set-Cookie",
+    "Special-Request-Header",
+  ],
+  preflightContinue: true,
   optionSuccessStatus: 200,
 };
 
