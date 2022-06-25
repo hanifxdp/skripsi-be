@@ -30,6 +30,8 @@ sessionStore.sync();
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ limit: "50mb", extended: false }));
 app.use(express.json());
+app.use(express.cookieParser());
+app.use(express.bodyParser());
 app.use(session(sessionConfig(sessionStore)));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -47,3 +49,5 @@ app.get("/", (request, response) => {
 app.use("/api/v1", budayaRoutes);
 
 app.use(express.urlencoded({ extended: true }));
+
+module.exports = app;

@@ -25,12 +25,12 @@ passport.use(
   })
 );
 
-passport.serializeUser((user, done) => done(null, user.id));
+passport.serializeUser(function (admin, done) {
+  done(null, admin);
+});
 
-passport.deserializeUser((user, done) => {
-  Admin.findById(id, function (err, user) {
-    done(err, user);
-  });
+passport.deserializeUser(function (admin, done) {
+  done(null, admin);
 });
 
 module.exports = passport;

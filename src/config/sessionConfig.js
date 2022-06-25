@@ -8,8 +8,8 @@ const sessionConfig = (sessionStore) => {
       length: 14,
       charset: "alphanumeric",
     }),
-    resave: false,
-    saveUninitialized: true,
+    resave: true,
+    saveUninitialized: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 7,
       sameSite: "none",
