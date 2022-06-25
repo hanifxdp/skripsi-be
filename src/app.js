@@ -23,10 +23,8 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 
-sessionStore.sync();
-
 app.use(cors(corsOptions));
-app.use(express.urlencoded({ limit: "50mb", extended: false }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(session(sessionConfig(sessionStore)));
 app.use(passport.initialize());
