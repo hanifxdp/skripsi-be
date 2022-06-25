@@ -8,7 +8,7 @@ const sessionConfig = (sessionStore) => {
       length: 14,
       charset: "alphanumeric",
     }),
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 7,
