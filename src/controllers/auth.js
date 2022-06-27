@@ -24,6 +24,8 @@ module.exports.login = async function (req, res) {
           path: "/",
           maxAge: 60 * 60 * 1000,
           httpOnly: false,
+          sameSite: "none",
+          secure: true,
         });
         return res.status(201).json({
           success: true,
