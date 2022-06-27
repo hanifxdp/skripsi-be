@@ -20,9 +20,10 @@ module.exports.login = async function (req, res) {
           { expiresIn: "1h" }
         );
         res.cookie("jwt", token, {
+          domain: "https://kerajinantradisional.vercel.app",
+          path: "/",
           maxAge: 60 * 60 * 1000,
-          secure: true,
-          sameSite: "none",
+          httpOnly: false,
         });
         return res.status(201).json({
           success: true,
