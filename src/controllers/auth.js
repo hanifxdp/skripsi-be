@@ -19,7 +19,7 @@ module.exports.login = async function (req, res) {
           { expiresIn: "1h" }
         );
         res.cookie("jwt", token, {
-          domain: "https://kerajinantradisional.vercel.app",
+          domain: "https://kerajinantradisional.vercel.app/",
           path: "/",
           maxAge: 60 * 60 * 1000,
           httpOnly: false,
