@@ -40,7 +40,7 @@ module.exports.login = async function (req, res) {
         message: "username and password didn't match",
       });
     }
-    return res.status(200).json({
+    return res.status(401).json({
       success: false,
       message: "username is not registered",
     });
