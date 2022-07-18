@@ -18,8 +18,6 @@ const sequelize = new Sequelize(DB.database, DB.username, DB.password, {
 
 const connectDB = async () => {
   try {
-    // await sequelize.sync({ force: true });
-
     await sequelize.sync();
     console.log("All models were synchronized successfully.");
     await sequelize.authenticate();

@@ -20,12 +20,12 @@ module.exports.getCalculation = async function (req, res) {
 
     let arrayTotal = [];
     budayaGroup.forEach((item) => {
-      arrayTotal.push(parseInt(item.dataValues.totalBudaya) + 3);
+      arrayTotal.push(parseInt(item.dataValues.totalBudaya));
     });
 
     const stdev = math.std(arrayTotal);
 
-    const totalBudaya = budaya.length + 102;
+    const totalBudaya = budaya.length;
     const totalProvinsi = provinsi.length;
     const average = totalBudaya / totalProvinsi;
 

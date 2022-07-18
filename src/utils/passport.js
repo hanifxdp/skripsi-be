@@ -13,7 +13,7 @@ passport.use(
       if (!admin) return cb(null, false);
 
       const passwordMatch = await bcrypt.compare(password, admin.password);
-      // console.log(passwordMatch);
+
       if (!passwordMatch) {
         return cb(null, false);
       }
