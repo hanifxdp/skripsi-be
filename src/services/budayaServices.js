@@ -16,6 +16,17 @@ exports.create = async (budaya) => {
 
   return result;
 };
+exports.updateById = async (id, data) => {
+  const budaya = await Budaya.findByPk(id);
+  if (!budaya) return null;
+  if (budaya.image) deleteCloudPicture(budaya.image);
+
+  budaya.set(data);
+
+  await budaya.save();
+
+  return budaya;
+};
 
 exports.deleteById = async (id) => {
   const budaya = await Budaya.findByPk(id);

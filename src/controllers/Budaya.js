@@ -185,13 +185,19 @@ exports.createBudaya = async (req, res) => {
 // Update budaya
 exports.updateBudaya = async (req, res) => {
   try {
-    await Budaya.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    });
-    res.json({
-      message: "Budaya Berhasil Diupdate",
+    const { id } = req.params;
+    const updateData = req.body;
+    if (req.file) updateData.image = req.file.path;
+
+    const data = await budayaServices.updateById(id, updateData);
+
+    if (!data)
+      return res.json({
+        message: "Budaya tidak ditemukan",
+      });
+
+    return res.json({
+      message: "Budaya berhasil diupdate",
     });
   } catch (err) {
     console.log(err);
