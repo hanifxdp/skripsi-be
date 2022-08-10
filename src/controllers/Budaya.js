@@ -100,6 +100,7 @@ exports.getListBudaya = async (req, res) => {
     const list = await Budaya.findAll({
       attributes: ["id", "nama_budaya"],
       where: { provinsiId: req.params.id },
+      order: [["id", "ASC"]],
     });
     if (!list) {
       return res.status(400).json({
