@@ -24,9 +24,9 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use(express.json());
+app.use(express.json({ limit: "3mb" }));
 app.use(cookieParser());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ limit: "3mb", extended: false }));
 
 app.get("/", (req, res) => res.send("Node.js, Express, and Postgres API"));
 app.use("/api/v1", apiRouter);
