@@ -98,9 +98,9 @@ exports.getBudayaById = async (req, res) => {
 exports.getListBudaya = async (req, res) => {
   try {
     const list = await Budaya.findAll({
-      attributes: ["id", "nama_budaya"],
+      attributes: ["id", "nama_budaya", "image", "video"],
       where: { provinsiId: req.params.id },
-      order: [["id", "ASC"]],
+      order: [["image", "ASC"]],
     });
     if (!list) {
       return res.status(400).json({
@@ -199,6 +199,7 @@ exports.updateBudaya = async (req, res) => {
 
     return res.json({
       message: "Budaya berhasil diupdate",
+      data: updateData,
     });
   } catch (err) {
     console.log(err);
