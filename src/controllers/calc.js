@@ -32,9 +32,9 @@ module.exports.getCalculation = async function (req, res) {
     const average = totalBudaya / totalProvinsi;
 
     if (escapeHtml(req.query.nilaiAcuan)) {
-      let n = escapeHtml(req.query.nilaiAcuan);
+      n = escapeHtml(req.query.nilaiAcuan);
     } else {
-      let n = 0.1;
+      n = 0.1;
     }
 
     const low = average - n * stdev;
@@ -47,6 +47,7 @@ module.exports.getCalculation = async function (req, res) {
       stdev,
       low,
       high,
+      n,
     };
     return res.status(200).json({
       success: true,
