@@ -2,12 +2,9 @@ const math = require("mathjs");
 const Budaya = require("../models/ListBudaya");
 const Provinsi = require("../models/Provinsi");
 const sequelize = require("sequelize");
-const { countBudaya } = require("./Provinsi");
-const escapeHtml = require("escape-html");
 
 module.exports.getCalculation = async function (req, res) {
   try {
-    let n = escapeHtml(req.query.nilaiAcuan);
     const budaya = await Budaya.findAll();
     const provinsi = await Provinsi.findAll();
     const budayaGroup = await Budaya.findAll({
@@ -31,10 +28,10 @@ module.exports.getCalculation = async function (req, res) {
     const totalProvinsi = provinsi.length;
     const average = totalBudaya / totalProvinsi;
 
-    if (escapeHtml(req.query.nilaiAcuan)) {
-      n = escapeHtml(req.query.nilaiAcuan);
-    } else {
-      n = 0.1;
+    let n = 0.1;
+
+    if (req.query.nilaiAcuan) {
+      n = req.query.nilaiAcuan;
     }
 
     const low = average - n * stdev;
