@@ -16,11 +16,10 @@ module.exports = {
     dialect: "postgres",
   },
   production: {
-    username: "skripsi-be-main-db-0ebd4b75bba940083",
-    password:
-      "aqQ8DrMME7gm4vSG8Qqj1ynYeUHH3n",
-    database: "skripsi-be-main-db-0ebd4b75bba940083",
-    host: "user-prod-us-east-2-1.cluster-cfi5vnucvv3w.us-east-2.rds.amazonaws.com",
+    username: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DATABASE,
+    host: process.env.POSTGRES_HOST,
     dialect: "postgres",
     dialectOptions: {
       ssl: {
