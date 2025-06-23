@@ -11,7 +11,7 @@ if (env === 'production') {
         username: process.env.POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
         database: process.env.POSTGRES_DATABASE,
-        host: process.env.POSTGRES_HOST,
+        host: process.env.OVERRIDE_POSTGRES_HOST,
         port: parseInt(process.env.POSTGRES_PORT || '5432'),
         dialect: process.env.POSTGRES_DIALECT || 'postgres',
         dialectModule: pg,
