@@ -1,3 +1,4 @@
+const pg = require('pg')
 const Sequelize = require('sequelize');
 const env = process.env.NODE_ENV || 'development';
 const config = require('../config/databaseConfig')[env];
@@ -13,6 +14,7 @@ if (env === 'production') {
         host: process.env.POSTGRES_HOST,
         port: parseInt(process.env.POSTGRES_PORT || '5432'),
         dialect: process.env.POSTGRES_DIALECT || 'postgres',
+        dialectModule: pg
         dialectOptions: {
             ssl: {
                 require: true,
