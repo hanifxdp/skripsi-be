@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/app/postgres:/var/lib/postgres/data
+    environment:
+      - POSTGRES_PASSWORD=S3cret
+      - POSTGRES_USER=culture_local
+      - POSTGRES_DB=cultureDB
+    networks:
+      - skynet
+
+networks:
+  skynet:
