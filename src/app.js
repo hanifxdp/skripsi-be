@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-const { swaggerUi, swaggerDocument } = require('./services/swagger');
+const { swaggerUi, swaggerHandler } = require('./services/swagger');
 const apiRouter = require('./routes/routes');
 const { connectDB } = require('./utils/database');
 
@@ -29,11 +29,7 @@ app.use(express.json({ limit: '3mb' }));
 app.use(cookieParser());
 app.use(express.urlencoded({ limit: '3mb', extended: false }));
 
-app.use(
-    '/api-docs',
-    swaggerUi.serve,
-    swaggerUi.setup(swaggerDocument, { explorer: true })
-);
+app.use('/api-docs', swaggerUi.serve, swaggerHandler());
 app.get('/', (req, res) =>
     res.send(`Node.js, Express, and Postgres API ${process.env.NODE_ENV}`)
 );
