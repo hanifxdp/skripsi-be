@@ -8,7 +8,7 @@ let sequelize;
 
 if (env === 'production') {
     sequelize = new Sequelize({
-        username: process.env.POSTGRES_USER,
+        username: process.env.OVERRIDE_POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
         database: process.env.POSTGRES_DATABASE,
         host: process.env.OVERRIDE_POSTGRES_HOST,
