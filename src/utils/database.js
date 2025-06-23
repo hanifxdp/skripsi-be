@@ -14,7 +14,7 @@ if (env === 'production') {
         host: process.env.POSTGRES_HOST,
         port: parseInt(process.env.POSTGRES_PORT || '5432'),
         dialect: process.env.POSTGRES_DIALECT || 'postgres',
-        dialectModule: pg
+        dialectModule: pg,
         dialectOptions: {
             ssl: {
                 require: true,
